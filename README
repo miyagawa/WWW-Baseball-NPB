@@ -18,11 +18,12 @@ SYNOPSIS
 
 DESCRIPTION
     WWW::Baseball::NPB provides you a way to fetch and extract Japanese
-    baseball result via Yahoo! Baseball.
+    baseball result via Yahoo! Baseball. (NPB = Nippon Professional
+    Baseball)
 
 NOTE
-    Characters like team names, status and stadium are encoded in EUC-JP.
-    You can convert them to any encoding via Jcode.
+    *   Characters like team names, status and stadium are encoded in
+        EUC-JP. You can convert them to any encoding via Jcode.
 
 TODO
     *   Separate out Yahoo! Baseball parsing logic, using information

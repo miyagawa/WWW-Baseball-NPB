@@ -16,35 +16,35 @@ use WWW::Baseball::NPB;
 my $baseball = WWW::Baseball::NPB->new;
 
 {
-    my @results = $baseball->results;
-    is @results, 6;
+    my @games = $baseball->games;
+    is @games, 6;
 
-    isa_ok $_, 'WWW::Baseball::NPB::Result' for @results;
+    isa_ok $_, 'WWW::Baseball::NPB::Game' for @games;
 
-    my $res = $results[0];
-    is $res->league, 'central';
-    is $res->home, '巨人';
-    is $res->visitor, '阪神';
-    is $res->score('巨人'), 1;
-    is $res->score('阪神'), 3;
-    is $res->status, '終了';
-    is $res->stadium, '東京ドーム';
+    my $game = $games[0];
+    is $game->league, 'central';
+    is $game->home, '巨人';
+    is $game->visitor, '阪神';
+    is $game->score('巨人'), 1;
+    is $game->score('阪神'), 3;
+    is $game->status, '終了';
+    is $game->stadium, '東京ドーム';
 }
 
 {
-    my @results = $baseball->results('pacific');
-    is @results, 3;
+    my @games = $baseball->games('pacific');
+    is @games, 3;
 
-    isa_ok $_, 'WWW::Baseball::NPB::Result' for @results;
+    isa_ok $_, 'WWW::Baseball::NPB::Game' for @games;
 
-    my $res = $results[0];
-    is $res->league, 'pacific';
-    is $res->home, '近鉄';
-    is $res->visitor, 'オリックス';
-    is $res->score('近鉄'), 6;
-    is $res->score('オリックス'), 3;
-    is $res->status, '終了';
-    is $res->stadium, '大阪ドーム';
+    my $game = $games[0];
+    is $game->league, 'pacific';
+    is $game->home, '近鉄';
+    is $game->visitor, 'オリックス';
+    is $game->score('近鉄'), 6;
+    is $game->score('オリックス'), 3;
+    is $game->status, '終了';
+    is $game->stadium, '大阪ドーム';
 }
 
 

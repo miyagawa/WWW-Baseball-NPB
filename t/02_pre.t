@@ -1,5 +1,5 @@
 use strict;
-use Test::More 'no_plan';
+use Test::More tests => 14;
 
 use WWW::Baseball::NPB;
 
@@ -16,19 +16,19 @@ use WWW::Baseball::NPB;
 my $baseball = WWW::Baseball::NPB->new;
 
 {
-    my @results = $baseball->results;
-    is @results, 6;
+    my @games = $baseball->games;
+    is @games, 6;
 
-    isa_ok $_, 'WWW::Baseball::NPB::Result' for @results;
+    isa_ok $_, 'WWW::Baseball::NPB::Game' for @games;
 
-    my $res = $results[0];
-    is $res->league, 'central';
-    is $res->home, '巨人';
-    is $res->visitor, '阪神';
-    is $res->score('巨人'), '';
-    is $res->score('阪神'), '';
-    is $res->status, '18時00分';
-    is $res->stadium, '東京ドーム';
+    my $game = $games[0];
+    is $game->league, 'central';
+    is $game->home, '巨人';
+    is $game->visitor, '阪神';
+    is $game->score('巨人'), '';
+    is $game->score('阪神'), '';
+    is $game->status, '18時00分';
+    is $game->stadium, '東京ドーム';
 }
 
 

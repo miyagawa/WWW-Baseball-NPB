@@ -1,4 +1,4 @@
-package WWW::Baseball::NPB::Result;
+package WWW::Baseball::NPB::Game;
 
 use strict;
 use vars qw($VERSION);
@@ -24,7 +24,7 @@ __END__
 
 =head1 NAME
 
-WWW::Baseball::NPB::Result - Japanese baseball result class
+WWW::Baseball::NPB::Game - Japanese baseball game class
 
 =head1 SYNOPSIS
 
@@ -32,8 +32,8 @@ See L<WWW::Baseball::NPB>.
 
 =head1 DESCRIPTION
 
-WWW::Baseball::NPB::Result is a class which rerpresents the actual
-result of Japanese baseball.
+WWW::Baseball::NPB::Game is a class which rerpresents the actual game
+information of Japanese baseball.
 
 =head1 AUTHOR
 

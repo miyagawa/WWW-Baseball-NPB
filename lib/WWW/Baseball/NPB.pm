@@ -5,7 +5,7 @@ use vars qw($VERSION);
 $VERSION = 0.02;
 
 use LWP::Simple;
-use WWW::Baseball::NPB::Result;
+use WWW::Baseball::NPB::Game;
 
 use vars qw($YahooURL);
 $YahooURL = 'http://sports.yahoo.co.jp/baseball/';
@@ -14,17 +14,17 @@ sub croak { require Carp; Carp::croak(@_) }
 
 sub new {
     my $class = shift;
-    my $self  = bless { results => [] }, $class;
+    my $self  = bless { games => [] }, $class;
     $self->_parse_body($YahooURL);
     return $self;
 }
 
-sub results {
+sub games {
     my($self, $league) = @_;
     unless ($league) {
-	return @{$self->{results}};
+	return @{$self->{games}};
     }
-    return grep { $_->league eq $league } @{$self->{results}};
+    return grep { $_->league eq $league } @{$self->{games}};
 }
 
 sub _parse_body {
@@ -32,18 +32,18 @@ sub _parse_body {
     my $body = LWP::Simple::get($url) or croak("Can't get content of $url");
     my $re   = $self->_match_pattern;
     while ($body =~ m/$re/g) {
-	$self->_add_result($1, $2, $3, $4, $5, $6, $7);
+	$self->_add_game($1, $2, $3, $4, $5, $6, $7);
     }
 }
 
 my %league = (cl => 'central', pl => 'pacific');
 
-sub _add_result {
+sub _add_game {
     my($self, $home, $home_score, $visitor_score, $league, $status, $visitor, $stadium) = @_;
     for ($home_score, $visitor_score) {
 	s,<b>(.*)</b>,$1,;
     }
-    push @{$self->{results}}, WWW::Baseball::NPB::Result->new(
+    push @{$self->{games}}, WWW::Baseball::NPB::Game->new(
 	home    => $home,
 	visitor => $visitor,
 	score   => {
@@ -81,29 +81,29 @@ __END__
 
 =head1 NAME
 
-WWW::Baseball::NPB - Fetches Japanese baseball result
+WWW::Baseball::NPB - Fetches Japanese baseball games information
 
 =head1 SYNOPSIS
 
   use WWW::Baseball::NPB;
 
   my $baseball = WWW::Baseball::NPB->new;
-  my @results  = $baseball->results;
-  # or @results = $baseball->results('central');
+  my @games  = $baseball->games;
+  # or @games = $baseball->games('central');
 
-  for my $res (@results) {
-      my $home    = $res->home;
-      my $visitor = $res->visitor;
+  for my $game (@games) {
+      my $home    = $game->home;
+      my $visitor = $game->visitor;
       printf "%s %d - %d %s (%s) [%s]\n",
-          $home, $res->score($home), $res->score($visitor), $visitor,
-          $res->status, $res->stadium;
+          $home, $game->score($home), $game->score($visitor), $visitor,
+          $game->status, $game->stadium;
   }
 
 =head1 DESCRIPTION
 
 WWW::Baseball::NPB provides you a way to fetch and extract Japanese
-baseball result via Yahoo! Baseball. (NPB = Nippon Professional
-Baseball)
+baseball games information via Yahoo! Baseball. (NPB = Nippon
+Professional Baseball)
 
 =head1 NOTE
 
