@@ -2,7 +2,7 @@ package WWW::Baseball::NPB;
 
 use strict;
 use vars qw($VERSION);
-$VERSION = 0.02;
+$VERSION = 0.03;
 
 use LWP::Simple;
 use WWW::Baseball::NPB::Game;

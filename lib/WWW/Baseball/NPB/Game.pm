@@ -2,7 +2,7 @@ package WWW::Baseball::NPB::Game;
 
 use strict;
 use vars qw($VERSION);
-$VERSION = 0.01;
+$VERSION = 0.03;
 
 sub new {
     my($class, %p) = @_;
