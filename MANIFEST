@@ -1,0 +1,9 @@
+Changes
+MANIFEST
+Makefile.PL
+README
+lib/WWW/Baseball/Japan.pm
+lib/WWW/Baseball/Japan/Result.pm
+t/00_compile.t
+t/01_baseball.t
+t/dummy.html
