@@ -68,7 +68,7 @@ sub _match_pattern {
 <td align="left" width=35%><b><a href=".*?">(.*?)</a>
 </b>
 (?:</td>\n)?</tr>
-<tr>
+<tr>(?:<td colspan=3 align=center><small>\[ <a href=".*?">ещеде╓</a> \]</small></td></tr><tr>)?
 <td align="center" colspan=3 ?>(.*?)</td>
 </tr>
 <tr><td height=4 colspan=3></td></tr>
