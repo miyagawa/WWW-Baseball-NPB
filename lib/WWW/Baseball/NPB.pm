@@ -2,9 +2,9 @@ package WWW::Baseball::NPB;
 
 use strict;
 use vars qw($VERSION);
-$VERSION = 0.01;
+$VERSION = 0.02;
 
-use LWP::Simple ();
+use LWP::Simple;
 use WWW::Baseball::NPB::Result;
 
 use vars qw($YahooURL);
@@ -46,7 +46,10 @@ sub _add_result {
     push @{$self->{results}}, WWW::Baseball::NPB::Result->new(
 	home    => $home,
 	visitor => $visitor,
-	score   => { $home => $home_score, $visitor => $visitor_score },
+	score   => {
+	    $home => $home_score,
+	    $visitor => $visitor_score,
+	},
 	league  => $league{$league},
 	status  => $status,
 	stadium => $stadium,
@@ -60,7 +63,7 @@ sub _match_pattern {
 <b><a href=".*?">(.*?)</a>
 </b>
 </td>
-<td align="center" width=30%>(\S*) - (\S*)<br><a href="/baseball/(cl|pl)/scores/.*?">(.*?)</a>
+<td align="center" width=30%>(\S*) ?- ?(\S*)<br><a href="/baseball/(cl|pl)/scores/.*?">(.*?)</a>
 </td>
 <td align="left" width=35%><b><a href=".*?">(.*?)</a>
 </b>
@@ -99,12 +102,19 @@ WWW::Baseball::NPB - Fetches Japanese baseball result
 =head1 DESCRIPTION
 
 WWW::Baseball::NPB provides you a way to fetch and extract Japanese
-baseball result via Yahoo! Baseball.
+baseball result via Yahoo! Baseball. (NPB = Nippon Professional
+Baseball)
 
 =head1 NOTE
 
+=over 4
+
+=item *
+
 Characters like team names, status and stadium are encoded in
 EUC-JP. You can convert them to any encoding via Jcode.
+
+=back
 
 =head1 TODO
 

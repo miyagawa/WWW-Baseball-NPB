@@ -2,8 +2,10 @@ Changes
 MANIFEST
 Makefile.PL
 README
-lib/WWW/Baseball/Japan.pm
-lib/WWW/Baseball/Japan/Result.pm
+lib/WWW/Baseball/NPB.pm
+lib/WWW/Baseball/NPB/Result.pm
 t/00_compile.t
 t/01_baseball.t
-t/dummy.html
+t/02_pre.t
+t/20020330.html
+t/20020331-pre.html

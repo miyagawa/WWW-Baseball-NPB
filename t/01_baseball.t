@@ -8,7 +8,7 @@ use WWW::Baseball::NPB;
     *LWP::Simple::get = sub ($) {
 	local $/;
 	require FileHandle;
-	my $handle = FileHandle->new("t/dummy.html");
+	my $handle = FileHandle->new("t/20020330.html");
 	return <$handle>;
     };
 }
